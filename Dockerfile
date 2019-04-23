@@ -8,7 +8,7 @@ WORKDIR /home/node/app
 # Install app devDependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 COPY package*.json ./
-RUN npm install
+RUN npm install --build-from-source=bcrypt
 
 # Bundle app source
 COPY . .
@@ -19,7 +19,7 @@ RUN npm run build
 
 # Runner stage
 
-FROM node:11
+FROM node:11-alpine
 ENV NODE_ENV=production
 WORKDIR /home/node/app
 
